@@ -7,7 +7,7 @@ function Game(){
 	this.btn = "";  //按键
 	this.life = "";  //生命值
 	this.source = ""; //积分
-	this.letterObjs = {} //字母对象
+	this.letterObjs = {}; //字母对象
 	this.letter = "";
 	this.sudu = 10;
 	this.zezhao = "";
@@ -35,7 +35,7 @@ Game.prototype={
 			do{
 				let charCode = Math.floor(Math.random()*26+65);
 				imgName= String.fromCharCode(charCode);
-			}while(this.letterObjs[imgName])
+			}while(this.letterObjs[imgName]);
 			
 			div.style.backgroundImage = `url(img/A_Z/${imgName}.png)`;
 	 		//位置随机  top left
@@ -43,7 +43,7 @@ Game.prototype={
 	 		do{
 	 			console.log(this.screen.offsetWidth);
 	 			LeftValue = Math.floor(Math.random()*(this.screen.offsetWidth-this.letter.offsetWidth));
-	 		}while(this.isOK(LeftValue))
+	 		}while(this.isOK(LeftValue));
 	 		
 	 		div.style.left = LeftValue+"px";
 
@@ -69,10 +69,10 @@ Game.prototype={
 					//删除并创建元素
 					this.screen.removeChild(this.letterObjs[i].node);
 					delete this.letterObjs[i];
-					this.createLetter();
+					this.createLetter(1);
 
 					
-					return;
+					// return;
 				}
 				obj.node.style.top = obj.top + "px";
 
@@ -110,13 +110,14 @@ Game.prototype={
 		//添加按键按下事件
 		this.keys.forEach((item)=>{
 			item.addEventListener("touchstart",()=>{
-				this.audio2.play();
+
 				let letter = item.innerText;//获取按下字母
 				if(this.letterObjs[letter]){
 					this.screen.removeChild(this.letterObjs[letter].node);
-					this.source.innerText++;
 					delete this.letterObjs[letter];
-				}
+                    this.createLetter(1);
+                    this.source.innerText++;
+                }
 
 			})
 		})
@@ -124,6 +125,7 @@ Game.prototype={
 			if(this.status.className=="status"){
 				this.stop();
 				this.status.classList.add("pause");
+                this.span.innerText=this.source.innerText;
 			}else{
 				this.run();
 				this.status.className="status"

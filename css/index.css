@@ -58,7 +58,7 @@ body{
 	align-items: center;
 	/* display: none; */
 }
-.keyArea .keyCon{
+.keyCon{
 	width: 7.2rem;
 	height: 4rem;
 	background-color: rgba(33,76,209,0.8);
@@ -67,7 +67,7 @@ body{
 	flex-wrap: wrap;
 	align-items: center;
 }
-.keyArea .keyCon .key{
+.key{
 	width: 0.5rem;
 	height: 0.8rem;
 	font-size: 0.4rem;
@@ -77,10 +77,10 @@ body{
 	background-image: url("../img/Letter.png");
 	background-size: contain;
 }
-.keyArea .keyCon .key:nth-child(11){
+.key:nth-child(11){
 	margin-left: 0.3rem;
 }
-.keyArea .keyCon .key:nth-child(19){
+.key:nth-child(19){
 	margin-right: 0.3rem;
 }
 
